@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD AJax</title>
+</head>
+<body>
+    <h1>CRUD con AXIOS</h1>
+    <section class="crud">
+        <article>
+            <h2 class="crud-title">Agregar</h2>
+            <form action="" class="crud-form">
+                <input type="text"  name="nombre" class="input-name" placeholder="nombre" required>
+                <input type="text"  name="constelacion" class="input-constelacion" placeholder="constelacion" required>
+                <input type="submit" value="Enviar" class="button-send">
+                <input type="hidden" value="" name="action" class="button-hiden">
+            </form>
+        </article>
+        <article>
+            <h2 class="crud-title">Ver santos</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Constelacion</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </article>
+    </section>
+    <template class="crud-template">
+        <tr>
+            <td class="template-name">Manco</td>
+            <td class="template-constelacion">XD</td>
+            <td>
+                <button class="template-editar">Editar</button>
+                <button class="template-eliminar">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+    <script src="app.js"></script>
+</body>
+</html>
