@@ -34,12 +34,12 @@ function getAll(){
             success: (res)=>{
                 res.forEach((elem)=>{
                     template.querySelector('.template-name').textContent = elem.nombre 
-                    template.querySelector('.template-constelation').textContent = elem.constelacion 
+                    template.querySelector('.template-constellation').textContent = elem.constelacion
                     template.querySelector('.template-edit')
 
                     template.querySelector('.template-edit').dataset.id = elem.id
-                    template.querySelector('.template-edit').dataset.name = elem.name
-                    template.querySelector('.template-edit').dataset.constelation = elem.constelation
+                    template.querySelector('.template-edit').dataset.name = elem.nombre
+                    template.querySelector('.template-edit').dataset.constellation = elem.constelacion
 
                     template.querySelector('.template-delete').dataset.id = elem.id
 
@@ -56,4 +56,38 @@ function getAll(){
 
 }
 d.addEventListener('DOMContentLoaded',getAll);
+d.addEventListener('submit', e=> {
+    if(e.target === form){
+        e.preventDefault();
 
+        if(!e.target.id.value){
+            //POST
+            ajax({
+                url: "http://localhost:3000/santos",
+                method: "POST",
+                success: (res)=>{
+                    location.reload();
+                },
+                error: ()=>{
+                    form.insertAdjacentHTML("afterend", `<p>${err}</p>`) 
+                },
+                data: {
+                    nombre: e.target.name.value,
+                    constelacion: e.target.constellation.value
+                }
+            })
+        }else{
+            //PUT
+        }
+    }
+})
+d.addEventListener('click', e =>{
+    if(e.target.matches('.template-edit')){
+        form.name.value = e.target.dataset.name
+        form.constellation.value = e.target.dataset.constellation
+        form.id.value = e.target.dataset.id
+    }
+    if(e.target.matches('.template-delete')){
+        console.log('Presionaste el eliminar');
+    }
+})
