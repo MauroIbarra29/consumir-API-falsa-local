@@ -27,6 +27,7 @@ function ajax(options){
         req.send(JSON.stringify(data));
 
 }
+//Metodo GET
 function getAll(){
     ajax({
             method: "GET",
@@ -56,12 +57,14 @@ function getAll(){
 
 }
 d.addEventListener('DOMContentLoaded',getAll);
+
+// POST Y PUT
 d.addEventListener('submit', e=> {
     if(e.target === form){
         e.preventDefault();
 
         if(!e.target.id.value){
-            //POST
+//Metodo POST
             ajax({
                 url: "http://localhost:3000/santos",
                 method: "POST",
@@ -77,10 +80,26 @@ d.addEventListener('submit', e=> {
                 }
             })
         }else{
-            //PUT
+//Upadte/PUT
+            ajax({
+                url: `http://localhost:3000/santos/${e.target.id.value}`,
+                method: "PUT",
+                success: (res)=>{
+                    location.reload();
+                },
+                error: ()=>{
+                    form.insertAdjacentHTML("afterend", `<p>${err}</p>`) 
+                },
+                data: {
+                    nombre: e.target.name.value,
+                    constelacion: e.target.constellation.value
+                }
+            })
         }
     }
 })
+
+//Delete y Edit
 d.addEventListener('click', e =>{
     if(e.target.matches('.template-edit')){
         form.name.value = e.target.dataset.name
@@ -88,6 +107,20 @@ d.addEventListener('click', e =>{
         form.id.value = e.target.dataset.id
     }
     if(e.target.matches('.template-delete')){
-        console.log('Presionaste el eliminar');
+        let isDelete = confirm(`Estas seguro que deseas eliminar el id ${e.target.dataset.id}? `);
+
+        if(isDelete){
+            console.log(e.target.dataset.id);
+            ajax({
+                url: `http://localhost:3000/santos/${e.target.dataset.id}`,
+                method: "DELETE",
+                success: (res)=>{
+                    location.reload();
+                },
+                error: ()=>{
+                    alert(err)
+                }
+        })
+        }
     }
-})
+});
