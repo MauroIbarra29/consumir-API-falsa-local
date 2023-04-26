@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD AJax</title>
+    <title>CRUD Fetch</title>
 </head>
 <body>
     <h1>CRUD con Fetch</h1>
@@ -12,8 +12,8 @@
         <article>
             <h2 class="crud-title">Agregar</h2>
             <form action="" class="crud-form">
-                <input type="text"  name="nombre" class="input-name" placeholder="nombre" required>
-                <input type="text"  name="constelacion" class="input-constelacion" placeholder="constelacion" required>
+                <input type="text"  name="name" class="input-name" placeholder="name" required>
+                <input type="text"  name="constellation" class="input-constellation" placeholder="constellation" required>
                 <input type="submit" value="Enviar" class="button-send">
                 <input type="hidden" value="" name="action" class="button-hiden">
             </form>
@@ -35,13 +35,13 @@
     <template class="crud-template">
         <tr>
             <td class="template-name">Manco</td>
-            <td class="template-constelacion">XD</td>
+            <td class="template-constellation">XD</td>
             <td>
-                <button class="template-editar">Editar</button>
-                <button class="template-eliminar">Eliminar</button>
+                <button class="template-edit">Editar</button>
+                <button class="template-delete">Eliminar</button>
             </td>
         </tr>
     </template>
-    <script src="app.js"></script>
+    <script src="fetch.js"></script>
 </body>
 </html>
